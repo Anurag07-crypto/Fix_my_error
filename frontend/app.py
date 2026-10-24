@@ -247,6 +247,10 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+st.info(
+    "Using the Streamlit Community Cloud demo? It may sleep after about 12 hours "
+    "of inactivity. Open it shortly before your demo or submission and wait for it to wake."
+)
 
 tab_explain, tab_history = st.tabs(["🔍  Explain an error", "📈  Learning history"])
 

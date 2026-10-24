@@ -158,6 +158,16 @@ $env:BACKEND_URL = "http://localhost:8000"
 streamlit run frontend/app.py
 ```
 
+### Streamlit Community Cloud demo
+
+The hosted frontend may go to sleep after around 12 hours of inactivity. Before a demo or submission, open the Streamlit Community Cloud app shortly beforehand and wait for it to finish waking up. If the backend is hosted separately and also sleeps, its first request may take longer while that service starts; the backend health endpoint can be opened to wake it:
+
+```text
+https://<your-backend-host>/health
+```
+
+Wait for the `{"status":"ok"}` response, then try an example in the frontend before presenting.
+
 ## API
 
 ### `GET /health`
