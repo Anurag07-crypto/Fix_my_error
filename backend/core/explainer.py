@@ -2,7 +2,7 @@ import json
 import os
 import re
 
-MODEL = os.environ.get("GROQ_MODEL", "gpt-oss-20b")  # check the Groq console for current model names
+MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-20b")  # check the Groq console for current model names
 MAX_CODE_CHARS = 6000
 REQUIRED_KEYS = ("meaning", "reason", "fixed_code", "how_to_avoid")
 
@@ -70,7 +70,6 @@ def explain(code: str, parsed: dict, classified: dict, retry: dict | None = None
         resp = client.chat.completions.create(
             model=MODEL,
             messages=_build_messages(code, parsed, classified, retry),
-            response_format={"type": "json_object"},
             temperature=0.2,
             max_tokens=1500,
         )
