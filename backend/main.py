@@ -9,10 +9,15 @@ load_dotenv()
 
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
-
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from core import pipeline
+from utils.logger import get_logger
 
 app = FastAPI(title="Explain My Error API")
+
+logger = get_logger(__name__)
 
 # --- Basic protection: this endpoint runs code and spends LLM quota ---
 RATE_LIMIT = 10          # requests
@@ -54,11 +59,16 @@ def health():
 def explain_error(req: ExplainRequest, request: Request):
     # Plain `def` on purpose: FastAPI runs it in a thread pool, so the
     # blocking sandbox and LLM calls don't freeze the server.
-    _check_rate_limit(_client_ip(request))
+    ip = _client_ip(request)
+    logger.info(f"Request from {ip}")
+    
+    _check_rate_limit(ip)
 
     if not _slots.acquire(blocking=False):
+        logger.warning(f"Rate limited - no slots available for {ip}")
         raise HTTPException(status_code=503, detail="Server is busy, try again in a few seconds.")
     try:
+        logger.info(f"Processing explain request")
         return pipeline.run(req.code, req.error)
     finally:
         _slots.release()

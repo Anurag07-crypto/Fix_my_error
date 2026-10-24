@@ -1,0 +1,20 @@
+2026-10-24 10:42:18 | INFO     | test | Logger test successful
+2026-10-24 10:43:15 | INFO     | test_script | Logger test successful
+2026-10-24 10:43:33 | INFO     | test_script | Logger test successful
+2026-10-24 10:44:29 | INFO     | test | Test log message
+2026-10-24 10:44:53 | INFO     | test | Logger import successful from project root
+2026-10-24 10:45:19 | INFO     | test | Logger import successful from project root
+2026-10-24 10:49:07 | INFO     | main | Request from 127.0.0.1
+2026-10-24 10:49:07 | INFO     | main | Processing explain request
+2026-10-24 10:49:07 | INFO     | core.pipeline | Starting pipeline run
+2026-10-24 10:49:07 | DEBUG    | core.pipeline | Code length: 71, Error text provided: False
+2026-10-24 10:49:07 | INFO     | core.pipeline | Running code in sandbox
+2026-10-24 10:49:07 | DEBUG    | core.pipeline | Sandbox result: ok=False, timed_out=False
+2026-10-24 10:49:07 | INFO     | core.pipeline | Reproducing error - using stderr from sandbox run
+2026-10-24 10:49:07 | INFO     | core.pipeline | Parsed traceback: ZeroDivisionError: division by zero...
+2026-10-24 10:49:07 | INFO     | core.pipeline | Classifying error
+2026-10-24 10:49:07 | DEBUG    | core.pipeline | Classified as: division_by_zero - Dividing by zero
+2026-10-24 10:49:07 | INFO     | core.pipeline | Explanation attempt 1
+2026-10-24 10:49:09 | DEBUG    | core.pipeline | Verification attempt 1
+2026-10-24 10:49:09 | INFO     | core.pipeline | Fix verified on attempt 1
+2026-10-24 10:49:09 | INFO     | core.pipeline | Pipeline completed successfully (status: ok, attempts: 1)

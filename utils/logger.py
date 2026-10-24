@@ -1,13 +1,14 @@
 import logging
 from pathlib import Path
+from typing import Optional
 
-def get_logger(name: str) -> logging.Logger:
+def get_logger(name: str, level: Optional[int] = None) -> logging.Logger:
     logger = logging.getLogger(name)
     
     # it prevent duplicate handlers if called multiple times
     if logger.handlers:
         return logger
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(level if level is not None else logging.DEBUG)
     
     #  ----- Console Handler -- INFO and above ---
     console = logging.StreamHandler()
