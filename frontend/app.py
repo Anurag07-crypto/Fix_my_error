@@ -22,17 +22,32 @@ st.markdown(
     """
     <style>
     :root {
-        --ink: #18243a;
-        --muted: #68758a;
-        --accent: #635bff;
-        --accent-dark: #4b43e6;
-        --mint: #dff8ef;
+        --ink: #172238;
+        --muted: #5e6b82;
+        --accent: #6964f5;
+        --accent-dark: #514bd4;
+        --mint: #c8eadf;
     }
     [data-testid="stAppViewContainer"] {
         background:
-            radial-gradient(ellipse at 12% 0%, rgba(99, 91, 255, .09), transparent 34rem),
-            linear-gradient(180deg, #f8f9ff 0%, #f5f7fb 45%, #f8fafc 100%);
+            radial-gradient(ellipse at 12% 0%, rgba(105, 100, 245, .13), transparent 34rem),
+            linear-gradient(180deg, #eceef6 0%, #e7eaf2 48%, #edf0f5 100%);
         color: var(--ink);
+    }
+    [data-testid="stAppViewContainer"] .stMarkdown,
+    [data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"],
+    [data-testid="stAppViewContainer"] [data-testid="stWidgetLabel"],
+    [data-testid="stAppViewContainer"] [data-testid="stExpander"] summary,
+    [data-testid="stAppViewContainer"] [data-testid="stMetricLabel"],
+    [data-testid="stAppViewContainer"] [data-testid="stMetricValue"],
+    [data-testid="stAppViewContainer"] [data-testid="stMetricDelta"],
+    [data-testid="stAppViewContainer"] [data-testid="stMetricValue"] *,
+    [data-testid="stAppViewContainer"] [data-testid="stDataFrame"],
+    [data-testid="stAppViewContainer"] [data-testid="stTable"] {
+        color: var(--ink) !important;
+    }
+    [data-testid="stAppViewContainer"] [data-testid="stCaptionContainer"] {
+        color: var(--muted) !important;
     }
     [data-testid="stHeader"] { background: transparent; }
     .block-container {
@@ -45,10 +60,10 @@ st.markdown(
         overflow: hidden;
         padding: 2.25rem 2.5rem;
         margin-bottom: 1.5rem;
-        border: 1px solid rgba(99, 91, 255, .13);
+        border: 1px solid rgba(105, 100, 245, .2);
         border-radius: 24px;
-        background: linear-gradient(120deg, #ffffff 0%, #f3f2ff 58%, #eafaf4 100%);
-        box-shadow: 0 16px 44px rgba(35, 44, 78, .07);
+        background: linear-gradient(120deg, #f5f5fc 0%, #e6e5f8 58%, #dcefe8 100%);
+        box-shadow: 0 16px 44px rgba(31, 40, 68, .11);
     }
     .hero:after {
         content: "</>";
@@ -56,7 +71,7 @@ st.markdown(
         right: 3rem;
         top: 50%;
         transform: translateY(-50%) rotate(-8deg);
-        color: rgba(99, 91, 255, .10);
+        color: rgba(81, 75, 212, .14);
         font: 800 5rem/1 monospace;
     }
     .eyebrow {
@@ -83,33 +98,48 @@ st.markdown(
         line-height: 1.65;
     }
     [data-testid="stVerticalBlockBorderWrapper"] {
-        border-color: #e5e9f2;
+        border-color: #d6dbe7;
         border-radius: 18px;
-        background: rgba(255, 255, 255, .88);
-        box-shadow: 0 10px 30px rgba(35, 44, 78, .045);
+        background: rgba(247, 248, 252, .94);
+        box-shadow: 0 10px 30px rgba(31, 40, 68, .07);
     }
     [data-testid="stTabs"] [data-baseweb="tab-list"] {
         gap: .5rem;
-        border-bottom: 1px solid #e6eaf2;
+        border-bottom: 1px solid #d6dbe7;
     }
-    [data-testid="stTabs"] button[role="tab"] {
+    [data-testid="stTabs"] [role="tab"] {
         padding: .7rem 1rem;
-        color: var(--muted);
+        color: var(--muted) !important;
+        -webkit-text-fill-color: var(--muted) !important;
         font-weight: 650;
     }
-    [data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
-        color: var(--accent-dark);
+    [data-testid="stTabs"] [role="tab"] * {
+        color: var(--muted) !important;
+        -webkit-text-fill-color: var(--muted) !important;
+    }
+    [data-testid="stTabs"] [role="tab"][aria-selected="true"],
+    [data-testid="stTabs"] [role="tab"][aria-selected="true"] * {
+        color: var(--accent-dark) !important;
+        -webkit-text-fill-color: var(--accent-dark) !important;
     }
     [data-testid="stTextArea"] textarea {
-        border-color: #dfe4ee;
+        border-color: #d3d9e6;
         border-radius: 12px;
-        background: #fbfcff;
+        background: #eef0f6;
+        color: var(--ink) !important;
+        -webkit-text-fill-color: var(--ink);
         font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
         font-size: .91rem;
         line-height: 1.55;
     }
+    [data-testid="stTextArea"] textarea::placeholder {
+        color: #77839a !important;
+        -webkit-text-fill-color: #77839a;
+        opacity: 1;
+    }
     [data-testid="stTextArea"] textarea:focus {
         border-color: var(--accent);
+        background: #f5f5fc;
         box-shadow: 0 0 0 1px var(--accent);
     }
     .stButton > button[kind="primary"] {
@@ -117,23 +147,52 @@ st.markdown(
         border: 0;
         border-radius: 11px;
         background: linear-gradient(110deg, var(--accent), #8178ff);
-        box-shadow: 0 7px 16px rgba(99, 91, 255, .2);
+        box-shadow: 0 7px 16px rgba(81, 75, 212, .24);
+        color: #ffffff !important;
         font-weight: 700;
     }
     .stButton > button[kind="primary"]:hover {
         border: 0;
         background: linear-gradient(110deg, var(--accent-dark), #7168f5);
-        box-shadow: 0 9px 20px rgba(99, 91, 255, .27);
+        box-shadow: 0 9px 20px rgba(81, 75, 212, .32);
+    }
+    .stButton > button:not([kind="primary"]) {
+        border: 1px solid #cbd2e1;
+        border-radius: 10px;
+        background: #e3e7f0;
+        color: #26334b !important;
+        font-weight: 650;
+    }
+    .stButton > button:not([kind="primary"]):hover {
+        border-color: #aeb8ce;
+        background: #d8deeb;
+        color: #172238 !important;
+    }
+    [data-baseweb="select"] > div {
+        border-color: #cbd2e1;
+        background: #e3e7f0;
+        color: #26334b !important;
+    }
+    [data-baseweb="select"] * {
+        color: #26334b !important;
+        -webkit-text-fill-color: #26334b;
+    }
+    [data-baseweb="popover"] [role="option"] {
+        background: #f7f8fc;
+        color: #26334b !important;
+    }
+    [data-baseweb="popover"] [role="option"]:hover {
+        background: #e6e8f5;
     }
     [data-testid="stMetric"] {
         padding: .8rem 1rem;
-        border: 1px solid #e9ecf4;
+        border: 1px solid #dfe3ed;
         border-radius: 14px;
-        background: #fbfcff;
+        background: #eef0f6;
     }
-    [data-testid="stMetricLabel"] { color: var(--muted); }
+    [data-testid="stAlert"] p { color: #26334b !important; }
     [data-testid="stCode"] {
-        border: 1px solid #e6e9f2;
+        border: 1px solid #d6dbe7;
         border-radius: 13px;
     }
     @media (max-width: 700px) {
