@@ -1,7 +1,7 @@
 [project]
-name = "error-hackathon"
+name = "Fix_my_error"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Python debugging assistant that reproduces errors, explains root causes, and verifies fixes with Groq and Streamlit."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
